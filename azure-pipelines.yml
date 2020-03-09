@@ -15,7 +15,7 @@ steps:
     docker -v
     docker version -f '{{.Server.Experimental}}'
     docker-compose -v
-    docker login -u $(dockerId) -p $(dockerPw)
+    docker login -u $(DOCKER_ID) -p $(DOCKER_PW)
   displayName: 'prepare'
 
 # - script: |
