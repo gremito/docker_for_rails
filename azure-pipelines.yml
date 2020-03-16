@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- script: |
+    ls -lt /
+    ls -lt $(System.DefaultWorkingDirectory)/
+  displayName: 'ls -lt'
+
 - download: current
   artifact: centos-php7-lamp
 
