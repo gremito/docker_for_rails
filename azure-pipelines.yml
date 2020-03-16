@@ -14,6 +14,8 @@ steps:
 - script: |
     ls -lt /
     ls -lt $(System.DefaultWorkingDirectory)/
+    ls -lt $(Build.ArtifactStagingDirectory)/
+
   displayName: 'ls -lt'
 
 - download: current
