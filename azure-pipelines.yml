@@ -11,6 +11,15 @@ pool:
 
 steps:
 
+- download: current
+  artifact: centos-php7-lamp
+
+- script: |
+    ls -lt
+    ls -lt centos-php7-lamp
+    cat centos-php7-lamp/share.txt
+  displayName: 'Check the contents of share.txt'  
+
 - script: |
     docker -v
     docker version -f '{{.Server.Experimental}}'
@@ -29,5 +38,5 @@ steps:
   displayName: 'run'
 
 - script: |
-    curl --insecure https://127.0.0.1:3000/
+    curl -i http://127.0.0.1:3000/
   displayName: 'test'
