@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- script: |
+    mkdir "$(System.ArtifactsDirectory)/download"
+    mkdir "$(Pipeline.Workspace)/download"
+  displayName: 'Init'  
+
 - task: DownloadBuildArtifacts@0
   inputs:
     buildType: 'specific'
@@ -18,6 +23,11 @@ steps:
     artifactName: 'b-centos-php7-lamp'
     pipeline: '4'
     buildId: '28'
+    downloadPath: "$(System.ArtifactsDirectory)/download"
+
+- script: |
+    ls -lt "$(System.ArtifactsDirectory)/download"
+  displayName: 'ls -lt DownloadBuildArtifacts'  
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -25,12 +35,16 @@ steps:
     project: 'gremito.net'
     pipeline: 4
     runVersion: 'latest'
+    path: "$(Pipeline.Workspace)/download"
 
 - script: |
-    ls -lt
-    # ls -lt centos-php7-lamp
-    # cat centos-php7-lamp/share.txt
-  displayName: 'Check the contents of share.txt'  
+    ls -lt "$(Pipeline.Workspace)/download"
+  displayName: 'ls -lt DownloadPipelineArtifact'  
+
+# - script: |
+#     ls -lt centos-php7-lamp
+#     cat centos-php7-lamp/share.txt
+#   displayName: 'Check the contents of share.txt'  
 
 # - script: |
 #     docker -v
