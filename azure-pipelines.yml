@@ -27,11 +27,12 @@ steps:
 
 - script: |
     ls -lt "$(System.ArtifactsDirectory)/download"
+    ls -lt "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp"
   displayName: 'ls -lt DownloadBuildArtifacts' 
 
-- script: |
-    cat "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp/share.txt"
-  displayName: 'Check the contents of b-centos-php7-lamp/share.txt'  
+# - script: |
+#     cat "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp/share.txt"
+#   displayName: 'Check the contents of b-centos-php7-lamp/share.txt'  
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -43,11 +44,12 @@ steps:
 
 - script: |
     ls -lt "$(Pipeline.Workspace)/download"
+    ls -lt "$(Pipeline.Workspace)/download/p-centos-php7-lamp"
   displayName: 'ls -lt DownloadPipelineArtifact'  
 
-- script: |
-    cat "$(Pipeline.Workspace)/download/p-centos-php7-lamp/share.txt"
-  displayName: 'Check the contents of p-centos-php7-lamp/share.txt'  
+# - script: |
+#     cat "$(Pipeline.Workspace)/download/p-centos-php7-lamp/share.txt"
+#   displayName: 'Check the contents of p-centos-php7-lamp/share.txt'  
 
 # - script: |
 #     docker -v
