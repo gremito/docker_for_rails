@@ -11,39 +11,43 @@ pool:
 
 steps:
 
-- script: |
-    ls -lt /
-    ls -lt $(System.DefaultWorkingDirectory)/
-    ls -lt $(Build.ArtifactStagingDirectory)/
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'specific'
+    project: 'gremito.net'
+    pipeline: '4'
+    buildId: '28'
 
-  displayName: 'ls -lt'
-
-- download: current
-  artifact: centos-php7-lamp
+- task: DownloadPipelineArtifact@2
+  inputs:
+    source: 'specific'
+    project: 'gremito.net'
+    pipeline: 4
+    runVersion: 'latest'
 
 - script: |
     ls -lt
-    ls -lt centos-php7-lamp
-    cat centos-php7-lamp/share.txt
+    # ls -lt centos-php7-lamp
+    # cat centos-php7-lamp/share.txt
   displayName: 'Check the contents of share.txt'  
 
-- script: |
-    docker -v
-    docker version -f '{{.Server.Experimental}}'
-    docker-compose -v
-    docker login -u $(DOCKER_ID) -p $(DOCKER_PW)
-  displayName: 'prepare'
+# - script: |
+#     docker -v
+#     docker version -f '{{.Server.Experimental}}'
+#     docker-compose -v
+#     docker login -u $(DOCKER_ID) -p $(DOCKER_PW)
+#   displayName: 'prepare'
+
+# # - script: |
+# #     docker pull nginx:alpine
+# #     docker tag nginx:alpine matoba/nginx
+# #   displayName: 'build'
 
 # - script: |
-#     docker pull nginx:alpine
-#     docker tag nginx:alpine matoba/nginx
-#   displayName: 'build'
+#     docker-compose build
+#     docker-compose up -d
+#   displayName: 'run'
 
-- script: |
-    docker-compose build
-    docker-compose up -d
-  displayName: 'run'
-
-- script: |
-    curl -i http://127.0.0.1:3000/
-  displayName: 'test'
+# - script: |
+#     curl -i http://127.0.0.1:3000/
+#   displayName: 'test'
