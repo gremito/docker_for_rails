@@ -26,11 +26,11 @@ steps:
     downloadPath: "$(System.ArtifactsDirectory)/download"
 
 - script: |
-    ls -lt "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp"
+    ls -lt "$(System.ArtifactsDirectory)/download"
   displayName: 'ls -lt DownloadBuildArtifacts' 
 
 - script: |
-    cat "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp/binshare.txt"
+    cat "$(System.ArtifactsDirectory)/download/b-centos-php7-lamp/bin/share.txt"
   displayName: 'Check the contents of DownloadBuildArtifacts share.txt'  
 
 - task: DownloadPipelineArtifact@2
@@ -42,7 +42,7 @@ steps:
     path: "$(Pipeline.Workspace)/download"
 
 - script: |
-    ls -lt "$(Pipeline.Workspace)/download/p-centos-php7-lamp"
+    ls -lt "$(Pipeline.Workspace)/download"
   displayName: 'ls -lt DownloadPipelineArtifact'  
 
 - script: |
