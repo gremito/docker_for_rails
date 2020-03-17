@@ -15,6 +15,7 @@ steps:
   inputs:
     buildType: 'specific'
     project: 'gremito.net'
+    artifactName: 'b-centos-php7-lamp'
     pipeline: '4'
     buildId: '28'
 
