@@ -7,9 +7,9 @@ parameters:
 - name: USER_PASS
   displayName: Use Password
   type: string
-  default: ''
+  default: None
   values:
-    - ''
+    - None
 
 trigger:
 - master
@@ -27,7 +27,7 @@ steps:
     echo "$(parameters.USER_PASS)"
     echo $PASS
 
-    if [ -n $(parameters.USER_PASS) ]; then
+    if [ $(parameters.USER_PASS) -ne 'None' ]; then
         $PASS=$(parameters.USER_PASS)
     fi
 
