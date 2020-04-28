@@ -18,19 +18,19 @@ pool:
 steps:
 
 - script: |
-  if [ -n "$(parameters.USER_PASS)"" ]; then
-      $PASS=$(parameters.USER_PASS)
-  fi
+    if [ -n "$(parameters.USER_PASS)"" ]; then
+        $PASS=$(parameters.USER_PASS)
+    fi
 
-  echo $(parameters.USER_PASS)
-  echo $PASS
+    echo $(parameters.USER_PASS)
+    echo $PASS
 
-  if [ -n $(parameters.USER_PASS) ]; then
-      $PASS=$(parameters.USER_PASS)
-  fi
+    if [ -n $(parameters.USER_PASS) ]; then
+        $PASS=$(parameters.USER_PASS)
+    fi
 
-  echo $(parameters.USER_PASS)
-  echo $PASS
+    echo $(parameters.USER_PASS)
+    echo $PASS
 
   env:
     PASS: $(PASS)
