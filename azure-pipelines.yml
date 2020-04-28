@@ -7,7 +7,7 @@ parameters:
 - name: USER_PASS
   displayName: Use Password
   type: string
-  default:
+  default: ''
 
 trigger:
 - master
