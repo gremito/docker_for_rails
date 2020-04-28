@@ -20,14 +20,14 @@ pool:
 steps:
 
 - script: |
-    if [ ${{ parameters.USER_PASS }} -ne "None" ]; then
+    if [ ${{ parameters.USER_PASS }} != "None" ]; then
         $PASS=${{ parameters.USER_PASS }}
     fi
 
     echo ${{ parameters.USER_PASS }}
     echo $PASS
 
-    if [ ${{ parameters.USER_PASS }} -ne "None" ]; then
+    if [ ${{ parameters.USER_PASS }} != "None" ]; then
         $PASS=${{ parameters.USER_PASS }}
     fi
 
