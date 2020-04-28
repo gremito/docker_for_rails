@@ -3,6 +3,11 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+- name: USER_PASS
+  displayName: Use Password
+  type: string
+  default:
+
 trigger:
 - master
 
@@ -10,6 +15,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- script: |
+  if [ -n "$(parameters.USER_PASS)"" ]; then
+      $PASS=$(parameters.USER_PASS)
+  fi
+
+  echo $(parameters.USER_PASS)
+  echo $PASS
+
+  if [ -n $(parameters.USER_PASS) ]; then
+      $PASS=$(parameters.USER_PASS)
+  fi
+
+  echo $(parameters.USER_PASS)
+  echo $PASS
+
+  env:
+    PASS: $(PASS)
+
+  displayName: 'Chacke Pass'  
+
 
 - script: |
     mkdir "$(System.ArtifactsDirectory)/download"
