@@ -22,7 +22,7 @@ steps:
         $PASS=$(parameters.USER_PASS)
     fi
 
-    echo "$(parameters.USER_PASS)""
+    echo "$(parameters.USER_PASS)"
     echo $PASS
 
     if [ -n $(parameters.USER_PASS) ]; then
